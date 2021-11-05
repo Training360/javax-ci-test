@@ -15,7 +15,7 @@ pipeline {
 		  sh 'echo ${user}'
                   sh 'echo ${pass}'
 		}
-		sh '${SONAR_CREDENTIALS} ${SONAR_CREDENTIALS_USR} ${SONAR_CREDENTIALS_PWD}'
+		sh '${SONAR_CREDENTIALS} blahblah ${SONAR_CREDENTIALS_USR} blahblah ${SONAR_CREDENTIALS_PSW}'
             }
         }
     }
