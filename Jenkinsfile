@@ -8,10 +8,11 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh './gradlew -PbuildNumber=${BUILD_NUMBER} test assemble'
-                echo '$SONAR_CREDENTIALS'
-                echo '$SONAR_CREDENTIALS_USR'
-                echo '$SONAR_CREDENTIALS_PSW'
+                // sh './gradlew -PbuildNumber=${BUILD_NUMBER} test assemble'
+		withCredentials([usernamePassword(credentialsId: 'sonar-credentials', passwordVariable: 'pass', usernameVariable: 'user')]) {
+		  echo '$user'
+                  echo '$pass'
+		}
             }
         }
     }
