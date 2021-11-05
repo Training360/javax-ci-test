@@ -1,0 +1,12 @@
+FROM adoptopenjdk:16-jdk-hotspot as builder
+WORKDIR app
+COPY build/libs/*.jar employees.jar
+RUN jar xvf employees.jar
+
+FROM adoptopenjdk:16-jre-hotspot
+WORKDIR app
+COPY --from=builder app/BOOT-INF/lib lib
+COPY --from=builder app/META-INF META-INF
+COPY --from=builder app/BOOT-INF/classes classes
+ENTRYPOINT ["java", "-cp", "classes:lib/*", \
+                "training.employees.EmployeesApplication"]

@@ -1,0 +1,19 @@
+FROM adoptopenjdk:11-jdk-hotspot as cache
+WORKDIR app
+COPY gradle ./gradle
+COPY settings.gradle .
+COPY build.gradle .
+COPY gradlew .
+RUN chmod +x gradlew
+RUN ./gradlew --console=plain  build
+
+FROM adoptopenjdk:11-jdk-hotspot as builder
+WORKDIR app
+COPY --from=cache /root/.gradle /root/.gradle
+COPY . .
+RUN ./gradlew --console=plain -i test assemble
+
+FROM adoptopenjdk:11-jre-hotspot
+WORKDIR app
+COPY --from=builder app/build/libs/*.jar ./employees.jar
+ENTRYPOINT ["java", "-jar", "employees.jar"]
