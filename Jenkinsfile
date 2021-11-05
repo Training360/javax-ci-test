@@ -15,6 +15,7 @@ pipeline {
 		  sh 'echo ${user}'
                   sh 'echo ${pass}'
 		}
+		sh '${SONAR_CREDENTIALS} ${SONAR_CREDENTIALS_USR} ${SONAR_CREDENTIALS_PWD}'
             }
         }
     }
