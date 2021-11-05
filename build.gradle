@@ -17,10 +17,7 @@ version = '0.0.1-' + buildNumber
 sourceCompatibility = '8'
 
 repositories {
-	// mavenCentral()
-maven {
-    url "http://localhost:8091/repository/maven-public/"
-  }
+	mavenCentral()
 }
 
 sourceSets {
