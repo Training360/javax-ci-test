@@ -10,8 +10,10 @@ pipeline {
             steps {
                 // sh './gradlew -PbuildNumber=${BUILD_NUMBER} test assemble'
 		withCredentials([usernamePassword(credentialsId: 'sonar-credentials', passwordVariable: 'pass', usernameVariable: 'user')]) {
-		  echo '$user'
-                  echo '$pass'
+		  echo $user
+                  echo $pass
+		  echo '${user}'
+                  echo '${pass}'
 		}
             }
         }
