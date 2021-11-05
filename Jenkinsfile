@@ -12,8 +12,8 @@ pipeline {
 		withCredentials([usernamePassword(credentialsId: 'sonar-credentials', passwordVariable: 'pass', usernameVariable: 'user')]) {
 //		  echo $user
 //                  echo $pass
-		  echo '${user}'
-                  echo '${pass}'
+		  sh 'echo ${user}'
+                  sh 'echo ${pass}'
 		}
             }
         }
